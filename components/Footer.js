@@ -6,7 +6,7 @@ export default function Footer() {
 		<footer className={styles.footer}>
 			<div>
 				<h4>Hungry Neighbors</h4>
-				<p>You can't just eat good food. You've got to talk about it too. And you've got to talk about it to somebody who understands that kind of food.</p>
+				<p>You can&apos;t just eat good food. You&apos;ve got to talk about it too. And you&apos;ve got to talk about it to somebody who understands that kind of food.</p>
 			</div>
 			<div>
 				<h4>Our Socials</h4>
