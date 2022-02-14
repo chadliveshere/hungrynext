@@ -12,13 +12,19 @@ export default function Footer() {
 				<h4>Our Socials</h4>
 				<ul>
 					<li>
-						<a href='https://www.instagram.com/hungryneighbors/'>Instagram</a>
+						<Link href='https://www.instagram.com/hungryneighbors/'>
+							<a>Instagram</a>
+						</Link>
 					</li>
 					<li>
-						<a href='https://www.facebook.com/hungryneighbors'>Facebook</a>
+						<Link href='https://www.facebook.com/hungryneighbors'>
+							<a>Facebook</a>
+						</Link>
 					</li>
 					<li>
-						<a href='https://twitter.com/hungryneighbors'>Twitter</a>
+						<Link href='https://twitter.com/hungryneighbors'>
+							<a>Twitter</a>
+						</Link>
 					</li>
 				</ul>
 			</div>
@@ -26,7 +32,9 @@ export default function Footer() {
 				<h4>Say hello!</h4>
 				<ul>
 					<li>
-						<a href='mailto:hello@hungryneighbors.com'>hello@hungryneighbors.com</a>
+						<Link href='mailto:hello@hungryneighbors.com'>
+							<a>hello@hungryneighbors.com</a>
+						</Link>
 					</li>
 				</ul>
 			</div>
