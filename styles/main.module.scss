@@ -1,0 +1,152 @@
+@import 'include-media/dist/include-media';
+
+.nav {
+	display: flex;
+	height: 60px;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--brown);
+	color: var(--parchment);
+	width: 100%;
+	padding: 0 max(24px, calc(50vw - var(--contentWidth) / 2));
+	box-sizing: border-box;
+	text-align: center;
+	&_logo {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		height: 30px;
+		width: 30px;
+		background-color: var(--tan);
+		mask-image: url(../public/hn-logo.svg);
+		mask-size: 100% 100%;
+		mask-repeat: no-repeat;
+		mask-position: center;
+	}
+	a {
+		line-height: 0;
+	}
+}
+
+.footer {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	gap: 40px;
+	padding: 40px max(24px, calc(50vw - var(--contentWidth) / 2));
+	background-color: var(--yellow);
+	color: var(--brown);
+	width: 100%;
+	box-sizing: border-box;
+	@include media('<tablet') {
+		grid-template-columns: 1fr 1fr;
+		div:first-child {
+			grid-column: span 2;
+		}
+	}
+	p,
+	h4 {
+		margin: 0 0 6px;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		& li {
+			font-size: 0.85rem;
+			margin: 0;
+			padding: 0;
+		}
+	}
+	&Disclaimer {
+		grid-column: span 3;
+		@include media('<tablet') {
+			grid-column: span 2;
+		}
+		p {
+			padding: 0;
+			margin: 0;
+			font-size: 0.65rem;
+			line-height: 1.5;
+			opacity: 0.6;
+		}
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+	}
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+	min-height: 100%;
+}
+
+.content {
+	flex-grow: 1;
+	padding: 40px max(24px, calc(50vw - var(--contentWidth) / 2));
+}
+
+.indexGrid {
+	position: relative;
+	display: grid;
+	grid-template-columns: 2fr 1.15fr;
+	gap: 72px;
+	@include media('<tablet') {
+		grid-template-columns: 1fr;
+	}
+}
+
+.featuredRecipe {
+	&Image {
+		margin: 0 0 24px;
+	}
+}
+
+.recipeCard {
+	position: relative;
+	margin-bottom: 96px;
+	&Label {
+		position: absolute;
+		z-index: 2;
+		left: 24px;
+		right: 24px;
+		bottom: -48px;
+		display: block;
+		margin: 0 24px;
+		text-align: center;
+		padding: 12px;
+		background-color: var(--brown);
+		color: var(--parchment);
+		h4 {
+			margin: 0 0 6px;
+			padding: 0;
+		}
+	}
+}
+
+.sticky {
+	position: sticky;
+	top: 40px;
+}
+
+.recipeNavigator {
+	display: grid;
+	margin-top: 40px;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+	div:last-child {
+		text-align: right;
+	}
+	p {
+		margin-bottom: 6px;
+	}
+	a:hover {
+		text-decoration: none;
+		h4 {
+			text-decoration: underline;
+		}
+	}
+}
