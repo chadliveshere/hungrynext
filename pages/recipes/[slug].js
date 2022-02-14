@@ -78,6 +78,7 @@ export async function getStaticProps({ params }) {
 				response.recipeCollection.items.length
 			),
 		},
+		revalidate: 30,
 	};
 }
 

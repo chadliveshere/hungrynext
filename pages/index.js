@@ -31,6 +31,7 @@ export async function getStaticProps() {
 		props: {
 			recipes: response.recipeCollection.items,
 		},
+		revalidate: 30,
 	};
 }
 
