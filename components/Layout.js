@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Footer from './Footer';
 import styles from '../styles/main.module.scss';
 import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 
 export default function Layout({ children }) {
 	return (

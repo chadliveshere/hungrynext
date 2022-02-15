@@ -5,6 +5,7 @@ import RecipeNavigator from '../../components/RecipeNavigator';
 import Ingredients from '../../components/Ingredients';
 import Instructions from '../../components/Instructions';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import styles from '../../styles/main.module.scss';
 
@@ -101,27 +102,30 @@ export default function RecipeDetails({ recipe, previousRecipe, nextRecipe }) {
 	const { title, publishDate, slug, heroImage, description, ingredients, instructions } = recipe;
 
 	return (
-		<article>
-			<section className={styles.grid_recipeHeader}>
-				<div className={styles.descriptionWrapper}>
-					<Time time={publishDate} />
-					<h1>{title}</h1>
-					<div dangerouslySetInnerHTML={{ __html: marked(description) }}></div>
-				</div>
-				<div className={styles.recipeImageWrapper}>
-					<div className={styles.recipeImage}>
-						<Image src={heroImage.url} layout='fill' objectFit='cover' />
+		<>
+			<NextSeo title={`Hungry Neighbors - ${title}`} />
+			<article>
+				<section className={styles.grid_recipeHeader}>
+					<div className={styles.descriptionWrapper}>
+						<Time time={publishDate} />
+						<h1>{title}</h1>
+						<div dangerouslySetInnerHTML={{ __html: marked(description) }}></div>
 					</div>
+					<div className={styles.recipeImageWrapper}>
+						<div className={styles.recipeImage}>
+							<Image src={heroImage.url} layout='fill' objectFit='cover' />
+						</div>
+					</div>
+				</section>
+				<section className={styles.grid_recipeContent}>
+					<Ingredients ingredients={ingredients} />
+					<Instructions instructions={instructions} />
+				</section>
+				<div className={styles.recipeNavigator}>
+					<RecipeNavigator recipe={previousRecipe} direction='Previous' />
+					<RecipeNavigator recipe={nextRecipe} direction='Next' />
 				</div>
-			</section>
-			<section className={styles.grid_recipeContent}>
-				<Ingredients ingredients={ingredients} />
-				<Instructions instructions={instructions} />
-			</section>
-			<div className={styles.recipeNavigator}>
-				<RecipeNavigator recipe={previousRecipe} direction='Previous' />
-				<RecipeNavigator recipe={nextRecipe} direction='Next' />
-			</div>
-		</article>
+			</article>
+		</>
 	);
 }
