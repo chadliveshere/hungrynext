@@ -1,6 +1,11 @@
-import { fetchContent } from '../../utils/contentful.js';
+import { fetchContent } from '../../utils/contentful';
 import { marked } from 'marked';
-import RecipeNavigator from '../../components/RecipeNavigator.js';
+import Time from '../../components/Time';
+import RecipeNavigator from '../../components/RecipeNavigator';
+import Ingredients from '../../components/Ingredients';
+import Instructions from '../../components/Instructions';
+import Image from 'next/image';
+
 import styles from '../../styles/main.module.scss';
 
 export async function getStaticPaths() {
@@ -22,7 +27,7 @@ export async function getStaticPaths() {
 
 	return {
 		paths,
-		fallback: false,
+		fallback: true,
 	};
 }
 
@@ -66,6 +71,14 @@ export async function getStaticProps({ params }) {
 		}
 	};
 
+	if (!response.recipeCollection.items.find(({ slug }) => slug === params.slug)) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
+	}
 	return {
 		props: {
 			recipe: response.recipeCollection.items.find(({ slug }) => slug === params.slug),
@@ -83,18 +96,32 @@ export async function getStaticProps({ params }) {
 }
 
 export default function RecipeDetails({ recipe, previousRecipe, nextRecipe }) {
-	const { title, publishDate, slug, heroImage, description } = recipe;
+	if (!recipe) return <div>Loading.</div>;
 
-	const parsedDescription = marked.parse(description);
+	const { title, publishDate, slug, heroImage, description, ingredients, instructions } = recipe;
 
 	return (
-		<div>
-			<h1>{title}</h1>
-			<div dangerouslySetInnerHTML={{ __html: marked(parsedDescription) }}></div>
+		<article>
+			<section className={styles.grid_recipeHeader}>
+				<div className={styles.descriptionWrapper}>
+					<Time time={publishDate} />
+					<h1>{title}</h1>
+					<div dangerouslySetInnerHTML={{ __html: marked(description) }}></div>
+				</div>
+				<div className={styles.recipeImageWrapper}>
+					<div className={styles.recipeImage}>
+						<Image src={heroImage.url} layout='fill' objectFit='cover' />
+					</div>
+				</div>
+			</section>
+			<section className={styles.grid_recipeContent}>
+				<Ingredients ingredients={ingredients} />
+				<Instructions instructions={instructions} />
+			</section>
 			<div className={styles.recipeNavigator}>
 				<RecipeNavigator recipe={previousRecipe} direction='Previous' />
 				<RecipeNavigator recipe={nextRecipe} direction='Next' />
 			</div>
-		</div>
+		</article>
 	);
 }

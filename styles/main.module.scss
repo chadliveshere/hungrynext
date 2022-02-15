@@ -45,7 +45,7 @@
 	}
 	p,
 	h4 {
-		margin: 0 0 6px;
+		margin: 0 0;
 	}
 	ul {
 		list-style: none;
@@ -134,7 +134,6 @@
 
 .recipeNavigator {
 	display: grid;
-	margin-top: 40px;
 	grid-template-columns: 1fr 1fr;
 	gap: 24px;
 	div:last-child {
@@ -148,5 +147,112 @@
 		h4 {
 			text-decoration: underline;
 		}
+	}
+}
+
+.link {
+	&_continue {
+		font-family: 'Averia Serif Libre', cursive;
+		font-weight: 700;
+		font-size: 1.2rem;
+		&::after {
+			content: '»';
+			margin-left: 6px;
+			text-decoration: underline transparent;
+		}
+	}
+	&_recipeCard:hover {
+		> article > div > h4 {
+			text-decoration: underline;
+		}
+	}
+}
+
+.ingredients {
+	display: inline-block;
+	background-color: var(--yellow);
+	padding: 24px 48px;
+	border-radius: 24px;
+	@include media('<tablet') {
+		display: block;
+	}
+	ul {
+		list-style-type: disc;
+		margin-left: 0;
+		padding-left: 24px;
+		li {
+			margin-bottom: 0.5rem;
+		}
+	}
+	&Wrapper {
+		position: sticky;
+		top: 40px;
+		@include media('<tablet') {
+			position: relative;
+			top: 0;
+		}
+	}
+}
+
+.instructions {
+	padding: 25px 0;
+	ol {
+		margin-left: 0;
+		padding-left: 36px;
+		li {
+			margin-bottom: 1rem;
+		}
+	}
+	&Wrapper {
+	}
+}
+
+.grid {
+	&_recipeHeader {
+		position: relative;
+		display: grid;
+		gap: 40px;
+		grid-template-columns: 2fr 1.5fr;
+		margin-bottom: 40px;
+		@include media('<tablet') {
+			grid-template-columns: 1fr;
+		}
+	}
+	&_recipeContent {
+		position: relative;
+		display: grid;
+		gap: 40px;
+		grid-template-columns: 1.5fr 2fr;
+		margin-bottom: 40px;
+		align-items: start;
+		@include media('<tablet') {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+.recipeImage {
+	position: absolute;
+	top: -40px;
+	left: 0;
+	width: calc(50vw - 87px);
+	height: 100%;
+	@include media('<tablet') {
+		position: relative;
+		width: 100%;
+	}
+	&Wrapper {
+		position: relative;
+		height: 500px;
+		@include media('<tablet') {
+			order: 1;
+			top: 24px;
+		}
+	}
+}
+
+.descriptionWrapper {
+	@include media('<tablet') {
+		order: 2;
 	}
 }
